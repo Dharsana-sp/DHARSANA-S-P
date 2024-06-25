@@ -1,0 +1,40 @@
+tasks = []
+def add_task(title):
+    tasks.append({'title': title, 'completed': False})
+    print(f"Task '{title}' added successfully!")
+def view_tasks():
+    if not tasks:
+        print("No tasks available.")
+    else:
+        for index,task in enumerate(tasks,start=1):
+            status="Completed" if task['completed'] else "Not Completed"
+            print(f"{index}.{task['title']}-{status}")
+def mark_task_completed(task_no):
+    if 0 < task_no<=len(tasks):
+        tasks[task_no- 1]['completed']=True
+        print(f"Task {task_no} marked as completed!")
+    else:
+        print("Invalid task number")
+def main():
+    while True:
+        print("To-Do List Application")
+        print("1.Add Task")
+        print("2.View Tasks")
+        print("3.Mark Task as Completed")
+        print("4.Exit")
+        choice=input("Enter your choice: ")
+        if choice=='1':
+            title=input("Enter task title: ")
+            add_task(title)
+        elif choice=='2':
+            view_tasks()
+        elif choice=='3':
+            task_no=int(input("Enter task number to mark as completed: "))
+            mark_task_completed(task_no)
+        elif choice=='4':
+            print("Exiting application.")
+            break
+        else:
+            print("Invalid choice. Please try again.")
+if __name__=="__main__":
+    main()
